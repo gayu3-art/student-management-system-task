@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Student - SMS{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Confirm Delete</h5>
+                </div>
+                <div class="card-body text-center p-4">
+                    <p class="lead mb-4">
+                        Are you sure you want to delete the student <strong>"{{ student.name }}"</strong>?
+                    </p>
+                    <p class="text-muted small">
+                        This action cannot be undone.
+                    </p>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-grid gap-2 d-md-block mt-4">
+                            <a href="{% url 'student-list' %}" class="btn btn-secondary me-2">Cancel</a>
+                            <button type="submit" class="btn btn-danger px-4">Delete Permanently</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
