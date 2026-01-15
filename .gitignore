@@ -1,0 +1,17 @@
+# Virtual Environments
+venv/
+venv_win/
+env/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+db.sqlite3
+
+# OS Specific
+.DS_Store
+Thumbs.db
