@@ -11,6 +11,20 @@ A production-ready Django application for managing student records.
 - **Modern UI**: Built with Bootstrap 5 and custom styling for a premium feel (Sidebar, Glassmorphism touches).
 - **Responsive Design**: Works on mobile and desktop.
 
+## Screenshots
+
+### Login Page
+![Login Page](screenshots/login_page.png)
+
+### Student List Dashboard
+![Student List](screenshots/student_list.png)
+
+### Add/Edit Student Form
+![Add Student](screenshots/student_form.png)
+
+### Student Detail View
+![Student Details](screenshots/student_detail.png)
+
 ## Model Design
 The core **Student** model includes the following fields:
 - `name`: Full name of the student.
