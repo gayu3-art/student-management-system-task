@@ -6,6 +6,11 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Students Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
+        <form class="d-flex me-3" method="get">
+            <input class="form-control me-2" type="search" placeholder="Search students..." aria-label="Search" name="q"
+                value="{{ query }}">
+            <button class="btn btn-outline-primary" type="submit">Search</button>
+        </form>
         <a href="{% url 'student-create' %}" class="btn btn-primary">
             <i class="bi bi-plus-lg me-1"></i> Add Student
         </a>
@@ -58,7 +63,11 @@
                     <tr>
                         <td colspan="6" class="text-center py-5">
                             <p class="text-muted mb-0">No students found.</p>
+                            {% if query %}
+                            <a href="{% url 'student-list' %}" class="mt-2 btn btn-link">Clear search</a>
+                            {% else %}
                             <a href="{% url 'student-create' %}" class="mt-2 btn btn-link">Add your first student</a>
+                            {% endif %}
                         </td>
                     </tr>
                     {% endfor %}
@@ -105,8 +114,53 @@
     {% empty %}
     <div class="text-center py-5">
         <p class="text-muted">No students found.</p>
+        {% if query %}
+        <a href="{% url 'student-list' %}" class="btn btn-secondary">Clear search</a>
+        {% else %}
         <a href="{% url 'student-create' %}" class="btn btn-primary">Add your first student</a>
+        {% endif %}
     </div>
     {% endfor %}
 </div>
+
+<!-- Pagination -->
+{% if is_paginated %}
+<nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if query %}&q={{ query }}{% endif %}"
+                aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <span class="page-link">&laquo;</span>
+        </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item"><a
+                class="page-link" href="?page={{ num }}{% if query %}&q={{ query }}{% endif %}">{{ num }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if query %}&q={{ query }}{% endif %}"
+                    aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <span class="page-link">&raquo;</span>
+            </li>
+            {% endif %}
+    </ul>
+</nav>
+{% endif %}
 {% endblock %}
