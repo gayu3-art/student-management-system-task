@@ -4,6 +4,11 @@ A production-ready Django application for managing student records.
 
 **🚀 Live Demo:** [https://student-management-system-task.onrender.com/](https://student-management-system-task.onrender.com/)
 
+**🔐 Quick Access (Admin):**
+- **Username:** `admin`
+- **Password:** `admin@8080`
+
+
 ## Features
 - **Student Management**: Create, Read, Update, and Delete (CRUD) student records.
 - **Authentication**: Secure login and logout system. All views are protected.
@@ -80,6 +85,12 @@ python manage.py createsuperuser
 ```
 Follow the prompts to set a username and password.
 
+#### 💡 Note: Default Credentials
+If you are using the pre-configured database or demo, the default admin credentials are:
+- **Username:** `admin`
+- **Password:** `admin@8080`
+
+
 ### Step 5: Run the Development Server
 Start the server:
 
@@ -90,8 +101,9 @@ python manage.py runserver
 ### Step 6: Access the Application
 1. Open your browser and go to `http://127.0.0.1:8000/`.
 2. You will be redirected to the Login page.
-3. Log in with the superuser credentials you created in Step 4.
+3. Log in with the superuser credentials you created in Step 4 (or use the **Default Credentials**: `admin` / `admin@8080`).
 4. You will be directed to the Student Dashboard.
+
 
 ## REST API
 
@@ -142,12 +154,12 @@ curl -u username:password http://127.0.0.1:8000/api/students/
 
 **List Students with Search:**
 ```bash
-curl -u admin:password "http://127.0.0.1:8000/api/students/?search=John&ordering=-date_of_joining"
+curl -u admin:admin@8080 "http://127.0.0.1:8000/api/students/?search=John&ordering=-date_of_joining"
 ```
 
 **Create Student:**
 ```bash
-curl -u admin:password \
+curl -u admin:admin@8080 \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
@@ -162,12 +174,12 @@ curl -u admin:password \
 
 **Get Statistics:**
 ```bash
-curl -u admin:password http://127.0.0.1:8000/api/students/statistics/
+curl -u admin:admin@8080 http://127.0.0.1:8000/api/students/statistics/
 ```
 
 **Bulk Create:**
 ```bash
-curl -u admin:password \
+curl -u admin:admin@8080 \
   -X POST \
   -H "Content-Type: application/json" \
   -d '{
