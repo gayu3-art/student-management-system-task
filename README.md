@@ -2,6 +2,8 @@
 
 A production-ready Django application for managing student records.
 
+**🚀 Live Demo:** [https://student-management-system-task.onrender.com/](https://student-management-system-task.onrender.com/)
+
 ## Features
 - **Student Management**: Create, Read, Update, and Delete (CRUD) student records.
 - **Authentication**: Secure login and logout system. All views are protected.
