@@ -91,7 +91,110 @@ python manage.py runserver
 3. Log in with the superuser credentials you created in Step 4.
 4. You will be directed to the Student Dashboard.
 
-## Project Structure
+## REST API
+
+This project includes a **fully functional REST API** built with Django REST Framework.
+
+### Quick Start
+
+**Base URL:** `http://127.0.0.1:8000/api/`
+
+**Authentication:** Basic Auth or Session Auth
+```bash
+# Using Basic Auth
+curl -u username:password http://127.0.0.1:8000/api/students/
+```
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/students/` | List all students (paginated, searchable, filterable) |
+| POST | `/api/students/` | Create a new student |
+| GET | `/api/students/{id}/` | Get student details with computed fields |
+| PUT | `/api/students/{id}/` | Update student (full) |
+| PATCH | `/api/students/{id}/` | Update student (partial) |
+| DELETE | `/api/students/{id}/` | Delete student |
+| GET | `/api/students/statistics/` | Get student statistics & analytics |
+| POST | `/api/students/bulk_create/` | Create multiple students at once |
+
+### Enhanced API Features
+
+✨ **New in this version:**
+- **Advanced Filtering**: Filter by course, search across multiple fields
+- **Custom Validation**: Enhanced validation with detailed error messages
+- **Computed Fields**: `days_since_joining` automatically calculated
+- **Statistics Endpoint**: Get aggregated data and insights
+- **Bulk Operations**: Create multiple students in one request
+- **CORS Support**: Ready for frontend integration (React, Vue, etc.)
+- **Browsable API**: Interactive web interface at `/api/`
+
+### Query Parameters
+
+- **Search**: `?search=query` - Search by name, email, or course
+- **Filter**: `?course=Computer%20Science` - Filter by exact course
+- **Ordering**: `?ordering=-date_of_joining` - Sort (use `-` for descending)
+- **Pagination**: `?page=2` - Navigate pages (10 items per page)
+
+### Example API Usage
+
+**List Students with Search:**
+```bash
+curl -u admin:password "http://127.0.0.1:8000/api/students/?search=John&ordering=-date_of_joining"
+```
+
+**Create Student:**
+```bash
+curl -u admin:password \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "1234567890",
+    "course": "Computer Science",
+    "date_of_joining": "2026-01-15"
+  }' \
+  http://127.0.0.1:8000/api/students/
+```
+
+**Get Statistics:**
+```bash
+curl -u admin:password http://127.0.0.1:8000/api/students/statistics/
+```
+
+**Bulk Create:**
+```bash
+curl -u admin:password \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "students": [
+      {"name": "Student 1", "email": "s1@example.com", "phone": "1111111111", "course": "Physics", "date_of_joining": "2026-01-15"},
+      {"name": "Student 2", "email": "s2@example.com", "phone": "2222222222", "course": "Chemistry", "date_of_joining": "2026-01-15"}
+    ]
+  }' \
+  http://127.0.0.1:8000/api/students/bulk_create/
+```
+
+### Testing the API
+
+**Option 1: Python Script**
+```bash
+python test_api.py
+```
+
+**Option 2: Postman**
+1. Import `Student_Management_API.postman_collection.json`
+2. Update authentication credentials
+3. Test all endpoints interactively
+
+**Option 3: Browsable API**
+1. Navigate to `http://127.0.0.1:8000/api/`
+2. Log in with your credentials
+3. Explore endpoints in your browser
+
+### Project Structure
 - `config/`: Project main configuration (settings, urls).
 - `students/`: The main app containing models, views, and forms.
 - `templates/`: Global templates (base.html, login).

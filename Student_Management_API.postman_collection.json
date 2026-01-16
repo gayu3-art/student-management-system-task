@@ -1,0 +1,232 @@
+{
+  "info": {
+    "name": "Student Management System API",
+    "description": "Complete API collection for Student Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "admin",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "password",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Students",
+      "item": [
+        {
+          "name": "List All Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", ""]
+            },
+            "description": "Get a paginated list of all students"
+          }
+        },
+        {
+          "name": "Search Students",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/?search=John",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", ""],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "John"
+                }
+              ]
+            },
+            "description": "Search students by name, email, or course"
+          }
+        },
+        {
+          "name": "Filter by Course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/?course=Computer Science",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", ""],
+              "query": [
+                {
+                  "key": "course",
+                  "value": "Computer Science"
+                }
+              ]
+            },
+            "description": "Filter students by course"
+          }
+        },
+        {
+          "name": "Get Student by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "1", ""]
+            },
+            "description": "Get detailed information about a specific student"
+          }
+        },
+        {
+          "name": "Create Student",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Johnson\",\n  \"email\": \"alice@example.com\",\n  \"phone\": \"9876543210\",\n  \"course\": \"Data Science\",\n  \"date_of_joining\": \"2026-01-15\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", ""]
+            },
+            "description": "Create a new student record"
+          }
+        },
+        {
+          "name": "Update Student (Full)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alice Johnson Updated\",\n  \"email\": \"alice.updated@example.com\",\n  \"phone\": \"1112223333\",\n  \"course\": \"Data Science\",\n  \"date_of_joining\": \"2026-01-15\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "1", ""]
+            },
+            "description": "Update all fields of a student"
+          }
+        },
+        {
+          "name": "Update Student (Partial)",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"5556667777\"\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "1", ""]
+            },
+            "description": "Update specific fields of a student"
+          }
+        },
+        {
+          "name": "Delete Student",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/1/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "1", ""]
+            },
+            "description": "Delete a student record"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Statistics & Bulk Operations",
+      "item": [
+        {
+          "name": "Get Statistics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/statistics/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "statistics", ""]
+            },
+            "description": "Get aggregated statistics about students"
+          }
+        },
+        {
+          "name": "Bulk Create Students",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"students\": [\n    {\n      \"name\": \"Student One\",\n      \"email\": \"student1@example.com\",\n      \"phone\": \"1111111111\",\n      \"course\": \"Physics\",\n      \"date_of_joining\": \"2026-01-15\"\n    },\n    {\n      \"name\": \"Student Two\",\n      \"email\": \"student2@example.com\",\n      \"phone\": \"2222222222\",\n      \"course\": \"Chemistry\",\n      \"date_of_joining\": \"2026-01-15\"\n    },\n    {\n      \"name\": \"Student Three\",\n      \"email\": \"student3@example.com\",\n      \"phone\": \"3333333333\",\n      \"course\": \"Biology\",\n      \"date_of_joining\": \"2026-01-15\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/students/bulk_create/",
+              "protocol": "http",
+              "host": ["127", "0", "0", "1"],
+              "port": "8000",
+              "path": ["api", "students", "bulk_create", ""]
+            },
+            "description": "Create multiple students in a single request"
+          }
+        }
+      ]
+    }
+  ]
+}
